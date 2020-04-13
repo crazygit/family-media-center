@@ -22,7 +22,9 @@ export ARIA2_PRC_SECRET="your_secret"
 export COMPOSE_PROJECT_NAME="family-media-center"
 ```
 
-根据自身网络情况,修改openwrt的配置文件`config/network`
+如果要使用`openwrt`旁路由，
+根据自身网络情况:
+1. 修改openwrt的配置文件`config/network`
 
 ```bash
 config interface 'lan'
@@ -43,7 +45,22 @@ config interface 'lan'
 ```
 
 
-运行:
+2. 修改`docker-compose.openwrt.yml`
+
+```bash
+networks:
+  ipvlan:
+    driver: ipvlan
+    driver_opts:
+      ipvlan_mode: l2
+      # 宿主机网卡
+      parent: enp3s0
+    ipam:
+      config:
+          # 本地IP网段
+        - subnet: 192.168.2.0/24
+          #gateway: 192.168.2.1
+```
 
 ```bash
 $ bash run.sh

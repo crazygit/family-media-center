@@ -1,4 +1,4 @@
-# 参考: 
+# 参考:
 #
 # https://docs.docker.com/network/macvlan/
 #
@@ -38,6 +38,7 @@ networks:
     driver: ipvlan
     driver_opts:
       ipvlan_mode: l2
+      # 宿主机网卡
       parent: enp3s0
     ipam:
       config:
