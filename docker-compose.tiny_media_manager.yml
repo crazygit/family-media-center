@@ -1,0 +1,31 @@
+version: "3.7"
+
+services:
+  tiny_media_manager:
+    image: romancin/tinymediamanager
+    environment:
+      - USER_ID=${PUID}
+      - GROUP_ID=${PGID}
+    ports:
+      - 5800:5800
+      - 5900:5900
+    volumes:
+      - tiny_media_manager_config_volume:/config
+      - jellyfin_media_volume:/media
+
+
+volumes:
+  jellyfin_media_volume:
+    driver: local
+    driver_opts:
+      type: none
+      device: /data/service/jellyfin/media
+      o: bind
+
+  tiny_media_manager_config_volume:
+    driver: local
+    driver_opts:
+      type: none
+      device: /data/service/tiny_media_manager/config
+      o: bind
+

@@ -1,0 +1,54 @@
+# 参考: 
+#
+# https://docs.docker.com/network/macvlan/
+#
+# 虚拟网卡技术: 可以选择macvlan模式，也可以ipvlan模式
+# 如果宿主机采用的是WIFI连接网络，则使用ipvlan模式，macvlan模式适合宿主机为有线连接网络的情况
+#
+#
+# 手动创建网络命令
+#
+# ipvlan, parent为宿主机网卡
+# $ docker network create -d ipvlan --subnet=192.168.2.1/24 --gateway=192.168.2.1 -o parent=enp3s0 -o ipvlan_mode=l2 ipvlan
+#
+# macvlan, parent为宿主机网卡
+# $ docker network create -d macvlan --subnet=192.168.2.1/24 --gateway=192.168.2.1 -o parent=enp3s0 macvlan
+#
+# 使用docker-compose创建网络时，docker-compose V3版本配置时不支持设置网关,如有需要，可以使用version2.4的版本
+# https://docs.docker.com/compose/compose-file/
+#
+# Additional IPAM configurations, such as gateway, are only honored for version 2 at the moment.
+version: '3.7'
+#version: '2.4'
+
+
+services:
+  openwrt:
+    image: crazygit/openwrt-x86-64
+    restart: always
+    privileged: true
+    volumes:
+      - ./config/network:/etc/config/network
+    networks:
+      - ipvlan
+      #- macvlan
+
+networks:
+  ipvlan:
+    driver: ipvlan
+    driver_opts:
+      ipvlan_mode: l2
+      parent: enp3s0
+    ipam:
+      config:
+        - subnet: 192.168.2.0/24
+          #gateway: 192.168.2.1
+    #macvlan:
+    #  driver: macvlan
+    #  driver_opts:
+    #    # 宿主机网卡
+    #    parent: enp3s0
+    #  ipam:
+    #    config:
+    #      - subnet: 192.168.2.0/24
+    #        #gateway: 192.168.2.1

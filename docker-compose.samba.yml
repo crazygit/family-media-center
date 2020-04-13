@@ -1,0 +1,43 @@
+version: "3.7"
+
+services:
+  samba:
+    image: dperson/samba
+    restart: unless-stopped
+    environment:
+      - USERID=${PUID}
+      - GROUPID=${PGID}
+    ports:
+      - 139:139
+      - 445:445
+    volumes:
+      - samba_shared_volume:/mount
+    command: ["-p", "-u", "samba_user;samba_password", "-s", "media share;/mount;yes;no;yes"]
+    # -u 设置samba的用户名和密码，用";"分隔
+    # -s 设置samba的分享路径
+    # https://hub.docker.com/r/dperson/samba/
+    # -s选项的使用格式
+    #    -s "<name;/path>[;browse;readonly;guest;users;admins;writelist;comment]"
+    #                Configure a share
+    #                required arg: "<name>;</path>"
+    #                <name> is how it's called for clients
+    #                <path> path to share
+    #                NOTE: for the default values, just leave blank
+    #                [browsable] default:'yes' or 'no'
+    #                [readonly] default:'yes' or 'no'
+    #                [guest] allowed default:'yes' or 'no'
+    #                NOTE: for user lists below, usernames are separated by ','
+    #                [users] allowed default:'all' or list of allowed users
+    #                [admins] allowed default:'none' or list of admin users
+    #                [writelist] list of users that can write to a RO share
+    #                [comment] description of share
+
+
+volumes:
+  samba_shared_volume:
+    driver: local
+    driver_opts:
+      type: none
+      device: /data/service/samba/shared/
+      o: bind
+

@@ -1,0 +1,39 @@
+version: "3.7"
+
+services:
+  aria2_pro:
+    image: p3terx/aria2-pro
+    restart: unless-stopped
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - RPC_SECRET=${ARIA2_PRC_SECRET}
+    ports:
+      - 6800:6800
+      - 9888:6888
+      - 6888:6888/udp
+    volumes:
+      - aria2_pro_config_volume:/config
+      - aria2_pro_downloads_volume:/downloads
+
+  aria_ng:
+    image: crazygit/aria_ng
+    ports:
+      - 8800:80
+
+
+volumes:
+  aria2_pro_config_volume:
+    driver: local
+    driver_opts:
+      type: none
+      device: /data/service/aria2/config
+      o: bind
+
+  aria2_pro_downloads_volume:
+    driver: local
+    driver_opts:
+      type: none
+      device: /data/service/aria2/downloads
+      o: bind
+

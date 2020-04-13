@@ -1,0 +1,38 @@
+version: "3.7"
+
+services:
+  jellyfin:
+    image: crazygit/jellyfin
+    restart: unless-stopped
+    ports:
+      - 5800:5800
+      - 5900:5900
+    network_mode: host
+    user: ${PUID}:${PGID}
+    volumes:
+      - jellyfin_config_volume:/config
+      - jellyfin_cache_volume:/cache
+      - jellyfin_media_volume:/media
+
+volumes:
+  jellyfin_config_volume:
+    driver: local
+    driver_opts:
+      type: none
+      device: /data/service/jellyfin/config
+      o: bind
+
+  jellyfin_cache_volume:
+    driver: local
+    driver_opts:
+      type: none
+      device: /data/service/jellyfin/cache
+      o: bind
+
+  jellyfin_media_volume:
+    driver: local
+    driver_opts:
+      type: none
+      device: /data/service/jellyfin/media
+      o: bind
+

@@ -1,0 +1,24 @@
+version: "3.7"
+
+services:
+  kodi_headless:
+    image: linuxserver/kodi-headless
+    restart: unless-stopped
+    environment:
+      - PGID=${PGID}
+      - PUID=${PUID}
+    ports:
+      - 8080:8080
+      - 9090:9090
+      - 9777:9777/udp
+    volumes:
+      - kodi_config_volume:/config/.kodi
+
+volumes:
+  kodi_config_volume:
+    driver: local
+    driver_opts:
+      type: none
+      device: /data/service/kodi/config
+      o: bind
+
