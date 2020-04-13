@@ -24,7 +24,7 @@ version: '3.7'
 
 services:
   openwrt:
-    image: crazygit/openwrt-x86-64
+    image: crazygit/lean-openwrt-x86-64
     restart: always
     privileged: true
     volumes:

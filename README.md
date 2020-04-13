@@ -87,8 +87,10 @@ $ bash run.sh down
 * kodi
 
   <http://yourt_ip:8080>
+
+  默认用户名和密码都是`kodi`
 * OpenWrt
 
   <http://your_openwrt_static_ip>
 
-
+  默认用户名和密码分布为`root`和`password`
