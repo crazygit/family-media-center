@@ -1,6 +1,6 @@
 ## 智能家庭中心
 
-使用`docker-compose`, 在废旧电脑上一键搭建智能家庭服务
+使用`docker-compose`, 在废旧电脑上一键搭建智能家庭服务。
 
 ### 使用方法
 
@@ -62,14 +62,28 @@ networks:
           #gateway: 192.168.2.1
 ```
 
+### 运行
+
 ```bash
 $ bash run.sh
 ```
 
 ### 服务访问方式
 
-* jellyfin: <http://yourt_ip:8096>
-* tiny_media_manager: <http://yourt_ip:5096>
-* aria_ng: <http://yourt_ip:8800>
-* kodi: <http://yourt_ip:8080>
-* OpenWrt: <http://your_openwrt_static_ip>
+* jellyfin
+
+  <http://yourt_ip:8096>
+* tiny_media_manager
+
+  <http://yourt_ip:5096>
+* aria_ng
+
+  <http://yourt_ip:8800>
+* kodi
+
+  <http://yourt_ip:8080>
+* OpenWrt
+
+  <http://your_openwrt_static_ip>
+
+
