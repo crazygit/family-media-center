@@ -65,7 +65,12 @@ networks:
 ### 运行
 
 ```bash
-$ bash run.sh
+# 启动所有服务
+$ bash run.sh up -d
+
+# 停止所有服务
+
+$ bash run.sh down
 ```
 
 ### 服务访问方式
@@ -75,7 +80,7 @@ $ bash run.sh
   <http://yourt_ip:8096>
 * tiny_media_manager
 
-  <http://yourt_ip:5096>
+  <http://yourt_ip:5800>
 * aria_ng
 
   <http://yourt_ip:8800>
