@@ -98,4 +98,6 @@ $ bash run.sh down
    * aria2下载目: <smb://your_ip/downloads>
    * jellyfin媒体目录: <smb://your_ip/media>
 
-
+* watchtower
+  
+  每隔一个小时检查所有的docker镜像是否有新版本并且自动更新

@@ -29,4 +29,5 @@ docker-compose -f docker-compose.aria2.yml \
                -f docker-compose.openwrt.yml \
                -f docker-compose.samba.yml \
                -f docker-compose.tiny_media_manager.yml \
+               -f docker-compose.watchtower.yml \
                $@
