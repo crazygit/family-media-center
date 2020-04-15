@@ -28,7 +28,8 @@ services:
     restart: always
     privileged: true
     volumes:
-      - ./config/network:/etc/config/network
+      - ./openwrt/etc/config/network:/etc/config/network
+      - ./openwrt/etc/config/dhcp:/etc/config/dhcp
     networks:
       - ipvlan
       #- macvlan

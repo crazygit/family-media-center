@@ -22,9 +22,8 @@ export ARIA2_PRC_SECRET="your_secret"
 export COMPOSE_PROJECT_NAME="family-media-center"
 ```
 
-如果要使用`openwrt`旁路由，
-根据自身网络情况:
-1. 修改openwrt的配置文件`config/network`
+如果要使用`openwrt`旁路由，请根据自身网络情况:
+1. 修改openwrt的配置文件`openwrt/etc/config/network`
 
 ```bash
 config interface 'lan'
@@ -69,7 +68,6 @@ networks:
 $ bash run.sh up -d
 
 # 停止所有服务
-
 $ bash run.sh down
 ```
 
@@ -89,8 +87,15 @@ $ bash run.sh down
   <http://yourt_ip:8080>
 
   默认用户名和密码都是`kodi`
+
 * OpenWrt
 
   <http://your_openwrt_static_ip>
 
   默认用户名和密码分布为`root`和`password`
+
+* samba服务
+   * aria2下载目: <smb://your_ip/downloads>
+   * jellyfin媒体目录: <smb://your_ip/media>
+
+

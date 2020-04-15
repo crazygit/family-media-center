@@ -11,8 +11,9 @@ services:
       - 139:139
       - 445:445
     volumes:
-      - samba_shared_volume:/mount
-    command: ["-p", "-u", "samba_user;samba_password", "-s", "media share;/mount;yes;no;yes"]
+      - jellyfin_media_volume:/media
+      - aria2_pro_downloads_volume:/downloads
+    command: ["-p", "-s", "media;/media;yes;no;yes", "-s", "downloads;/downloads;yes;no;yes"]
     # -u 设置samba的用户名和密码，用";"分隔
     # -s 设置samba的分享路径
     # https://hub.docker.com/r/dperson/samba/
@@ -34,10 +35,17 @@ services:
 
 
 volumes:
-  samba_shared_volume:
+
+  jellyfin_media_volume:
     driver: local
     driver_opts:
       type: none
-      device: /data/service/samba/shared/
+      device: /data/service/jellyfin/media
       o: bind
 
+  aria2_pro_downloads_volume:
+    driver: local
+    driver_opts:
+      type: none
+      device: /data/service/aria2/downloads
+      o: bind

@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   jellyfin:
-    image: crazygit/jellyfin
+    image: jellyfin/jellyfin
     restart: unless-stopped
     ports:
       - 5800:5800

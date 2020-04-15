@@ -15,7 +15,6 @@ volumes="
 /data/service/aria2/config
 /data/service/aria2/downloads
 /data/service/kodi/config
-/data/service/samba/shared
 "
 
 for volume in $volumes
