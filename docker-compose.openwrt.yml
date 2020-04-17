@@ -30,6 +30,7 @@ services:
     volumes:
       - ./openwrt/etc/config/network:/etc/config/network
       - ./openwrt/etc/config/dhcp:/etc/config/dhcp
+      - ./openwrt/etc/rc.local:/etc/rc.local
     networks:
       - ipvlan
       #- macvlan

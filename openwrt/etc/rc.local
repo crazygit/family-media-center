@@ -1,0 +1,14 @@
+# Put your custom commands here that should be executed once
+# the system init finished. By default this file does nothing.
+
+# 修复DNS总是被设置为127.0.0.11的问题,使用本机的dnsmasq
+# https://github.com/coolsnowwolf/lede/issues/4110
+
+cat > /etc/resolv.conf <<EOF
+search lan
+nameserver 127.0.0.1
+options ndots:0
+EOF
+
+
+exit 0

@@ -8,8 +8,8 @@ config interface 'lan'
         option netmask '255.255.255.0'
         # 主路由的网关
         option gateway '192.168.2.1'
-        # 主路由的DNS
-        option dns '192.168.2.1'
+        # DNS
+        option dns '223.6.6.6'
         # 广播地址
         option broadcast '192.168.2.255'
         #option ip6assign '60'
