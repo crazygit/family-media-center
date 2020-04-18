@@ -62,6 +62,8 @@ docker-compose -f docker-compose.aria2.yml \
 
 
 2. 修改`docker-compose.openwrt.yml`
+
+   注意: 宿主机如果通过WIFI连接网络，则选择ipvlan模式，如果是有线连接网络则选择macvlan模式
     ```bash
     networks:
       ipvlan:

@@ -3,7 +3,8 @@
 # https://docs.docker.com/network/macvlan/
 #
 # 虚拟网卡技术: 可以选择macvlan模式，也可以ipvlan模式
-# 如果宿主机采用的是WIFI连接网络，则使用ipvlan模式，macvlan模式适合宿主机为有线连接网络的情况
+#
+# 注意: 如果宿主机采用的是WIFI连接网络，则使用ipvlan模式，macvlan模式适合宿主机为有线连接网络的情况
 #
 #
 # 手动创建网络命令
@@ -32,26 +33,26 @@ services:
       - ./openwrt/etc/config/dhcp:/etc/config/dhcp
       - ./openwrt/etc/rc.local:/etc/rc.local
     networks:
-      - ipvlan
-      #- macvlan
+      - macvlan
+      #- ipvlan
 
 networks:
-  ipvlan:
-    driver: ipvlan
+  macvlan:
+    driver: macvlan
     driver_opts:
-      ipvlan_mode: l2
       # 宿主机网卡
       parent: enp3s0
     ipam:
       config:
         - subnet: 192.168.2.0/24
           #gateway: 192.168.2.1
-    #macvlan:
-    #  driver: macvlan
-    #  driver_opts:
-    #    # 宿主机网卡
-    #    parent: enp3s0
-    #  ipam:
-    #    config:
-    #      - subnet: 192.168.2.0/24
-    #        #gateway: 192.168.2.1
+  #ipvlan:
+  #  driver: ipvlan
+  #  driver_opts:
+  #    ipvlan_mode: l2
+  #    # 宿主机网卡
+  #    parent: enp3s0
+  #  ipam:
+  #    config:
+  #      - subnet: 192.168.2.0/24
+  #        #gateway: 192.168.2.1
